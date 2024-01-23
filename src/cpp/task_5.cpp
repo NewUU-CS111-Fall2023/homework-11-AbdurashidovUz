@@ -1,8 +1,37 @@
-/*
- * Author:
- * Date:
- * Name:
- */
+#include <iostream>
+#include <string>
 
-class Problem5 {
+using namespace std;
+
+class Solution {
+public:
+    string decodeMessage(string key, string message) {
+        char d[128]{};
+        d[' '] = ' ';
+        char i = 'a';
+
+        for (char& c : key) {
+            if (!d[c]) {
+                d[c] = i++;
+            }
+        }
+
+        for (char& c : message) {
+            c = d[c];
+        }
+
+        return message;
+    }
 };
+
+int main() {
+    Solution solution;
+
+    string key = "eljuxhpwnyrdgtqkviszcfmabo";
+    string message = "zwx hnfx lqantp mnoeius ycgk vcnjrdb";
+
+    string decodedMessage = solution.decodeMessage(key, message);
+    cout << "Decoded Message: " << decodedMessage << endl;
+
+    return 0;
+}
